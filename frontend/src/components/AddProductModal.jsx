@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import API from '../api';
+import axios from 'axios';
 
 export default function AddProductModal({ onClose, onAddSuccess }) {
   const [form, setForm] = useState({
@@ -26,7 +27,7 @@ export default function AddProductModal({ onClose, onAddSuccess }) {
     const fd = new FormData();
     fd.append('image', file); // backend expects field 'image'
     try {
-      const resp = await API.post('/products/upload', fd, {
+      const resp = await axios.post('https://inventory-management-1-p0zc.onrender.com/products/upload', fd, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
 
